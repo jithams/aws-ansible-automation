@@ -1,0 +1,37 @@
+---
+- hosts: dev
+  become: true
+
+  tasks:
+
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Create webdev directory
+      file:
+        path: /webdev
+        state: directory
+
+    - name: Create webpage
+      copy:
+        content: "development"
+        dest: /webdev/index.html
+
+    - name: Remove default Apache page
+      file:
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: Create symbolic link for default page
+      file:
+        src: /webdev/index.html
+        dest: /var/www/html/index.html
+        state: link

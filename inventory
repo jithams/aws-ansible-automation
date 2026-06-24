@@ -1,0 +1,9 @@
+[dev]
+mumbai-client1 ansible_host=172.31.41.61
+
+[test]
+mumbai-client2 ansible_host=172.31.42.216
+
+[all:vars]
+ansible_user=devops
+ansible_python_interpreter=/usr/bin/python3

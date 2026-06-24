@@ -1,0 +1,18 @@
+---
+- hosts: dev
+  become: true
+
+  tasks:
+    - name: Set issue file for dev
+      copy:
+        content: "development\n"
+        dest: /etc/issue
+
+- hosts: test
+  become: true
+
+  tasks:
+    - name: Set issue file for test
+      copy:
+        content: "test\n"
+        dest: /etc/issue
